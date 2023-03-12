@@ -20,6 +20,3 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 12345
-        volumeMounts:
-        - name: files
-          mountPath: /files
