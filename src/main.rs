@@ -34,7 +34,6 @@ fn fibonacci(n: u32) -> u32 {
     }
 }
 
-
 async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
     let path = req.uri().path();
     if req.method() == Method::GET {
@@ -103,10 +102,10 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
                 Body::from("")
             )
         ),
-        "/fib" => Ok({
+        "/fib" => {
             let body_bytes = hyper::body::to_bytes(req.into_body()).await.unwrap();
             let body_str = String::from_utf8_lossy(&body_bytes);
-            let n: u32 = match u32::from_str(&body_str.trim()) {
+            let n: u32 = match body_str.trim().parse::<u32>() {
                 Ok(n) => n,
                 Err(_) => return Ok(Response::builder()
                     .status(StatusCode::BAD_REQUEST)
@@ -116,10 +115,10 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
     
             // Call the Fibonacci function and return the result as a JSON response
             let result = fibonacci(n);
-            Response::new(
-                Body::from(result)
-            )}
-        ),
+            Ok(Response::new(
+                Body::from(result.to_string())
+            ))
+        },
         "/index" => Ok(
             Response::new(
                 Body::from(
