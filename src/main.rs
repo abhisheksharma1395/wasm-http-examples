@@ -103,7 +103,7 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
                 Body::from("")
             )
         ),
-        "/fib" => Ok(
+        "/fib" => Ok({
             let body_bytes = hyper::body::to_bytes(req.into_body()).await.unwrap();
             let body_str = String::from_utf8_lossy(&body_bytes);
             let n: u32 = match u32::from_str(&body_str.trim()) {
@@ -118,7 +118,7 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
             let result = fibonacci(n);
             Response::new(
                 Body::from(result)
-            )
+            )}
         ),
         "/index" => Ok(
             Response::new(
