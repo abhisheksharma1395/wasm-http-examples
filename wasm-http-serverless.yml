@@ -15,8 +15,8 @@ spec:
       - name: http-server
         image: docker.io/adroitx/wasm-http-examples:latest
         ports:
-        - containerPort: 12345
+        - containerPort: 8080
           protocol: TCP
         livenessProbe:
           tcpSocket:
-            port: 12345
+            port: 8080
