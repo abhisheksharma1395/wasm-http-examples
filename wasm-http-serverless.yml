@@ -1,0 +1,25 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: wasm-http
+  namespace: default
+spec:
+  template:
+    metadata:
+      annotations:
+        module.wasm.image/variant: compat-smart
+    spec:
+      runtimeClassName: crun
+      timeoutSeconds: 1
+      containers:
+      - name: http-server
+        image: docker.io/adroitx/wasm-http-examples:latest
+        ports:
+        - containerPort: 12345
+          protocol: TCP
+        livenessProbe:
+          tcpSocket:
+            port: 12345
+        volumeMounts:
+        - name: files
+          mountPath: /files

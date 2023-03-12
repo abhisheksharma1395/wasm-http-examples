@@ -15,7 +15,7 @@
 Make sure that if you open the dockerfile, you check that it has been saved using LF (Line Feed) and not CRLF (Carriage Return Line Feed). For VSCode, this can be seen and changed through the status bar
 
 ```bash
-git clone https://github.com/nslebruh/wasm-docker-test.git
+git clone https://github.com/abhisheksharma1395/wasm-http-examples.git
 
 cd ./wasm-http-examples
 ```
@@ -28,7 +28,7 @@ bash run.sh
 
 If using other:
 ```bash
-docker buildx build --platform wasi/wasm32 -t nslebruh/wasm-docker-test .
+docker buildx build --platform wasi/wasm32 -t adroitx/wasm-http-examples.
 docker compose up
 ```
 
