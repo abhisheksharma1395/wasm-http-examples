@@ -122,7 +122,7 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
         "/index" => Ok(
             Response::new(
                 Body::from(
-                    read("/files/hello_world/index.html")
+                    read("/index.html")
                     .expect("Should be able to read index.html")
                 )
             )
