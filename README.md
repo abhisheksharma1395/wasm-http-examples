@@ -19,14 +19,16 @@ git clone https://github.com/abhisheksharma1395/wasm-http-examples.git
 
 cd ./wasm-http-examples
 ```
+Pre-requisite:
+Install rust and wasmedge in your machine.
+You can find the instructions at https://wasmedge.org/book/en/quick_start/install.html  
 
+Compile and create wasm module with below command
+rustup target add wasm32-wasi
+cargo build --target wasm32-wasi --release
 
-If using bash: 
-```bash
-bash run.sh
-```
+Copy the file wasm-http-examples.wasm module from /target/wasm32-wasi/release/ folder into the root directory of project.
 
-If using other:
 ```bash
 docker buildx build --platform wasi/wasm32 -t adroitx/wasm-http-examples.
 docker compose up

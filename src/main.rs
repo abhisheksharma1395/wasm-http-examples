@@ -31,7 +31,7 @@ async fn router(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
     // Handle each HTTP verb
     match (req.method(), req.uri().path()) {
         (&Method::GET, "/") => {
-            *response.body_mut() = Body::from("Hello world from Rust!");
+            *response.body_mut() = Body::from("Hello world from Rust with wasm!");
         }
         (&Method::GET, "/echo") => {
             *response.body_mut() = req.into_body();
